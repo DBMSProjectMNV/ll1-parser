@@ -1,0 +1,135 @@
+div {
+  position: relative;
+}
+body{
+  background-color: #fff7f7;
+}
+div.toplevel {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-bottom: 5vh;
+}
+.simulation {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  overflow-x: auto;
+  padding: 2rem;
+  width: 100%;
+}
+div.heading {
+  width: 100%;
+  position: relative;
+}
+div.heading img {
+  display: inline;
+}
+
+/* examples button */
+button.button-examples {
+  color: #fff;
+  background-color: #0f76c1;
+}
+
+/* examples collapsible */
+.examples-collapsible {
+  box-shadow: inset 0px 0 2px 1px #000a !important;
+}
+
+/* valid invalid colors */
+#input {
+  color: var(--fill-color);
+}
+
+/* sticky buttons */
+.button-group-sticky {
+  position: sticky;
+  top: 1px;
+  /*top: 8vh;*/
+  background-color: #fff7f7;
+  z-index: 3;
+  box-shadow: #eee 1px 1px 1px 1px;
+  padding: 1rem;
+  width: max-content;
+}
+
+/* new styles */
+button.button-instn {
+  color: #fff;
+  background-color: #1cb841;
+  margin: 0 40%;
+}
+.link {
+  fill: none;
+  stroke: #000;
+}
+#parsingTableRows tr > td:nth-child(1) {
+  text-align: left;
+}
+#parsingTableRows tr > td:nth-child(2) {
+  text-align: right;
+}
+.with-gap {
+  gap: 2rem;
+}
+.mspace {
+  font-family: monospace;
+  font-size: 0.8rem;
+}
+.mspace-input {
+  font-family: monospace;
+  font-size: 1rem;
+  padding: .6em;
+  display: inline-block;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: inset 0 1px 3px #ddd;
+  box-shadow: inset 0 1px 3px #ddd;
+  border-radius: 4px;
+  vertical-align: middle;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+table.pure-table {
+  background-color: #fff;
+}
+
+@media screen and (max-width: 1250px){
+  div.toplevel {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+}
+.heading div {
+  padding: max(1.5vw, 1.5vh);
+  width: 100%;
+}
+.heading > div > ul {
+  width: 80%;
+  margin: 0 10%;
+  border-radius: 10px;
+  box-shadow: 2px 0 5px #000a;
+  overflow-x: hidden;
+  max-height: 1200px;
+  transition: max-height 0.2s linear;
+  background-color: #fffefe;
+}
+.heading li:first-child {
+  margin-top: 1.5em;
+}
+.heading li {
+  padding: 0 10px;
+  margin-right: 2rem;
+}
+.heading li:last-child {
+  margin-bottom: 1.5em;
+}
+.heading ul.h-hidden {
+  max-height: 0;
+}

@@ -1,0 +1,52 @@
+[
+  {
+    "question": "Consider the following grammar:<pre>\nS → aS'\nS' → aS' | ε</pre>Which of the following is/are true for the above grammar?",
+    "answers": {
+      "a": "left recursive",
+      "b": "Ambiguous",
+      "c": "LL(1)",
+      "d": "FIRST(S) = {a, ϵ}"
+    },
+    "correctAnswer": "c"
+  },
+  {
+    "question": "Consider the following Grammar G:<pre>\nS → Ae\nA → CbD\nC → BC | ε\nB → cdD | acdD\nD → c | ε</pre>In LL(1) parse table of above grammar G, How many cells are having multiple entries?",
+    "answers": {
+      "a": "1",
+      "b": "2",
+      "c": "3",
+      "d": "4"
+    },
+    "correctAnswer": "a"
+  },
+  {
+    "question": "Consider the following grammar:<pre>\nS → FR\nR → S | ε\nF → id </pre>In the predictive parser table, M, of the grammar the entries M[S, id] and M[R, $] respectively:",
+    "answers": {
+      "a": "{S -> FR} and {R -> ε}",
+      "b": "{S -> FR} and { }",
+      "c": "{S -> FR} and {R -> *S}",
+      "d": "{F -> id} and {R -> ε}"
+    },
+    "correctAnswer": "a"
+  },
+  {
+    "question": "Calculate the First(S) and Follow(A) functions for the given grammar:<pre>\nS → AaAb / BbBa\nA → ∈\nB → ∈</pre>",
+    "answers": {
+      "a": "First(S)={ a, ∈ } and Follow(A)={ a, b }",
+      "b": "First(S)={ a, b } and Follow(A)={ a, b }",
+      "c": "First(S)={∈, ∈ } and Follow(A)={ a, b }",
+      "d": "First(S)={ a, b } and Follow(A)={ a, ∈ }"
+    },
+    "correctAnswer": "b"
+  },
+  {
+    "question": "Consider the following Grammar G:<pre>\nS → Ae\nA → CbD\nC → BC | ε\nB → cdD | acdD\nD → c | ε</pre>WhWich of the following is false?",
+    "answers": {
+      "a": "Follow(D) = {a,c,e}",
+      "b": "First(S) = {a,b,c}",
+      "c": "Follow(D) = {a,b,c,e}",
+      "d": "First(A) = {a,b,c}"
+    },
+    "correctAnswer": "a"
+  }
+]

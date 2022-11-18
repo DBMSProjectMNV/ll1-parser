@@ -1,0 +1,52 @@
+[
+  {
+    "question": "Which of the following is true",
+    "answers": {
+      "a": "Every regular grammar is LL (1) and every regular has an LR (1) grammar",
+      "b": "Every regular grammar is not LL (1) and every regular set has an LR (1) grammar",
+      "c": "Every regular grammar is LL (1) and every regular set does not have-an LR (1) Grammar",
+      "d": "Every regular grammar is not LL (1) and every regular set does not have-an LR (1) grammar"
+    },
+    "correctAnswer": "b"
+  },
+  {
+    "question": "What is sufficient to prove that grammar is not LL(1)",
+    "answers": {
+      "a": "Grammar is non-ambiguous",
+      "b": "Grammar is left recursive",
+      "c": "Grammar is right recursive",
+      "d": "Grammar is not context-free"
+    },
+    "correctAnswer": "d"
+  },
+  {
+    "question": "Which one of the following kinds of derivation is used by LL(1) parsers",
+    "answers": {
+      "a": "leftmost",
+      "b": "leftmost in reverse",
+      "c": "rightmost",
+      "d": "rightmost in reverse"
+    },
+    "correctAnswer": "a"
+  },
+  {
+    "question": "The grammar A → AA | (A) | ε is not suitable for predictive-parsing because the grammar is",
+    "answers": {
+      "a": "left recursive",
+      "b": "right recursive",
+      "c": "ambiguous",
+      "d": "operator grammar"
+    },
+    "correctAnswer": "c"
+  },
+  {
+    "question": "Choose the correct Option :<br>Statement 1 : Predictive parsing technique avoids backtracking.<br>Statement 2 : LL(1) Grammar cannot be ambiguous.<br> Which of the following is correct about top-down parser?",
+    "answers": {
+      "a": "Statement 1 only",
+      "b": "Statement 2 only",
+      "c": "Both Statement 1 and Statement 2",
+      "d": "Neither statement 1 nor statement 2"
+    },
+    "correctAnswer": "c"
+  }
+]

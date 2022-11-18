@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Simulation</title>
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/sim.style.css" />
+	<link rel="stylesheet" type="text/css" href="css/sim.css" />
+	<script src="js/sim.script.js" defer></script>
+	<!--	<script src="ui/script.js" defer></script>-->
+	<!--	<script src="https://d3js.org/d3.v3.js"></script>-->
+	<!--	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css">-->
+	<!--	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">-->
+	<script src="js/d3.v3.js"></script>
+	<link rel="stylesheet" href="css/pure-min.css" />
+	<link rel="stylesheet" href="css/grids-responsive-min.css" />
+</head>
+<body>
+		<div class="toplevel">
+			<h1>Simulation</h1>
+			<div class="heading">
+<!--				<h2 class="content-subhead">LL(1) Parser</h2>-->
+				<button class="button-instn pure-button" onclick="this.parentElement.querySelector('ul').classList.toggle('h-hidden');">instructions</button>
+				<div><ul class="h-hidden">
+					<li><h4>
+						Valid LL(1) Grammars
+					</h4>
+					<p>For any production S -> A | B, it must be the case that:</p>
+					<ul>
+						<li>For no terminal t could A and B derive strings beginning with t</li>
+						<li>At most one of A and B can derive the empty string</li>
+						<li>if B can derive the empty string, then A does not derive any string beginning with a terminal in
+							Follow(A)
+						</li>
+					</ul></li>
+					<li><h4>
+						Formatting Instructions
+					</h4>
+					<ul>
+						<li>The non-terminal on the left-hand-side of the first rule is the start non-terminal</li>
+						<li>Write each production rule in a separate line (see example to the left)</li>
+						<li>Separate each token using whitespace</li>
+						<li>$ is reserved as the end-of-input symbol, and S is reserved as an artificial start symbol. The
+							grammar is automatically augmented with the rule S -> <i>start</i> $
+						</li>
+					</ul></li>
+					<li><h4>
+						Debugging
+					</h4>
+					<ul>
+						<li>More information about the parser construction is printed on the console</li>
+						<li>The source code follows the pseudocode in lecture. In particular, see <tt>computeNullable</tt>, <tt>computeFirst</tt>,
+							<tt>computeFollow</tt>, and <tt>computeLL1Tables</tt></li>
+					</ul></li>
+				</ul></div>
+			</div>
+				<div class="content" id="simulation">
+
+
+						<h3>LL(1) grammar ('' is &epsilon;):</h3>
+
+						<div class="pure-g">
+							<div class="pure-u-1 pure-u-md-1-2">
+	  <textarea class="pure-input-1 mspace-input" aria-label="Grammar" id="grammar" rows="10" cols="30">E -> T E'
+E' -> + T E'
+E' -> ''
+T -> F T'
+T' -> * F T'
+T' -> ''
+F -> ( E )
+F -> id</textarea>
+							</div>
+
+						</div>
+
+						<br>
+
+						<a href="#" class="pure-button pure-button-primary" onclick="grammarChanged();return false;">Generate tables</a>
+						<a href="#" id="resetGrammarButton" class="pure-button pure-button-primary" onclick="window.location.reload();return false;">Reset</a>
+
+
+						<div>
+							<div class="pure-g with-gap">
+								<div class="pure-u-1">
+									<h3>Grammar Table</h3>
+									<table class="pure-table pure-table-bordered mspace">
+										<thead>
+										<tr id="firstFollowTableHead">
+											<th>Nonterminals</th>
+											<th>FIRST</th>
+											<th>FOLLOW</th>
+										</tr>
+										</thead>
+										<tbody id="firstFollowTableRows">
+										</tbody>
+									</table>
+								</div>
+								<div class="pure-u-1">
+									<h3>Transition Table</h3>
+									<table class="pure-table pure-table-bordered mspace" border="1">
+										<thead>
+										<tr id="llTableHead"></tr>
+										</thead>
+										<tbody id="llTableRows">
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+
+
+						<h3>Parsing</h3>
+
+					<div class="heading">
+						<button class="button-examples pure-button" onclick="this.parentElement.querySelector('ul').classList.toggle('h-hidden');">examples</button>
+						<div><ul class="h-hidden examples-collapsible">
+							<li><h4>
+								Valid string examples for ETF Grammar:
+							</h4>
+							<ul>
+								<li>id + id</li>
+								<li>id * id</li>
+								<li>id + id * id</li>
+								<li>id * id + id</li>
+							</ul>
+							<li><h4>
+								Invalid string examples for ETF Grammar:
+							</h4>
+							<ul>
+								<li>id +</li>
+								<li>id *</li>
+								<li>+</li>
+								<li>* +</li>
+							</ul>
+						</ul></div>
+					</div>
+
+
+					<form class="pure-form pure-form-aligned">
+							<fieldset>
+								<div class="">
+									<label for="input">Token stream separated by spaces: </label>
+									<input id="input" type="text" size="10" onkeyup="resize(this, 10);"
+										   value="id + id" class="mspace-input">
+								</div>
+							</fieldset>
+						</form>
+
+						<div class="button-group-sticky">
+							<a href="#" id="parseButton" class="pure-button pure-button-primary" disabled onclick="parseInput();return false;"> Parse</a>
+							<a href="#" id="stepButton" class="pure-button pure-button-primary" disabled onclick="parseInputStep();return false;"> Step
+								Forward </a>
+							<a href="#" id="resetTreeButton" class="pure-button pure-button-primary" disabled onclick="resetParse();return false;">Reset</a>
+						</div>
+						<br>
+
+						<br>
+						<div class="pure-g">
+							<div class="pure-u-1 pure-u-md-1-2" style="">
+								<h3>Trace</h3>
+								<table class="pure-table pure-table-bordered mspace" border="1" style="">
+									<thead><tr><th>Stack</th><th>Input</th><th>Rule</th></tr></thead>
+									<tbody id="parsingTableRows"></tbody>
+								</table>
+							</div>
+							<div class="pure-u-1 pure-u-md-1-2">
+								<h3 style="text-align: center;">Parse Tree</h3>
+								<svg width='600' height='600'></svg>
+							</div>
+						</div>
+
+
+					</div>
+		</div>
+</body>
+</html>
